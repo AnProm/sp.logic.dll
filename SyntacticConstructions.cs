@@ -33,7 +33,7 @@ namespace Logic
             switch (mode)
             {
                 case 0:
-                    if (wordArray[index][0] == '(')
+                    if (wordArray[index++] == "foreach"&& wordArray[index][0] == '(')
                     {
                         currentWord = wordArray[index].Trim('(');
                         if (currentWord == "") { currentWord = wordArray[++index]; }
