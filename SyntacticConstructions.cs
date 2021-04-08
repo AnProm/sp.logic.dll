@@ -287,7 +287,7 @@ namespace Logic
                 result = "Данные некорректны";
             }
             if (words[index++] != ")" || words[index++]!= "{") { result = "Неверный синтаксис"; };
-            //ниже - обработка else 
+            //ниже - обработка else meow
             if (words.Contains("else"))
             {
                 int elseIndex = Array.IndexOf(words, "else");
