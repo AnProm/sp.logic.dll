@@ -78,6 +78,7 @@ namespace Logic
         private static string Counter<T>(string[] words, int index)
         {
             string result = "Ошибка разбора конструкции FOREACH";
+            try { 
             index++;//here is place for name of variable
             if (words[++index] != "in") { return result; }
             if (words[++index] != "{") { return result; }
@@ -104,6 +105,11 @@ namespace Logic
             if (words[++index] != ")" || words[++index] != "{" || words[++index] != "}") { return result; }
 
             result = counter.ToString();
+            }
+            catch
+            {
+                result = "Ошибка разбора конструкции FOREACH";
+            }
             return result;
         }
         /// <summary>
@@ -115,7 +121,7 @@ namespace Logic
         /// <returns></returns>
         public static string Selector<T>(string[] words, int index)
         {
-            string result = "Ошибка разбора конструкции IF";
+            string result = "Ошибка разбора конструкции IF"; 
             try
             {
                 T firstVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
@@ -281,11 +287,6 @@ namespace Logic
                     }
                     else { result = "Неверный синтаксис"; }
                 }
-            }
-            catch
-            {
-                result = "Данные некорректны";
-            }
             if (words[index++] != ")" || words[index++]!= "{") { result = "Неверный синтаксис"; };
             //ниже - обработка else meow
             if (words.Contains("else"))
@@ -316,6 +317,11 @@ namespace Logic
                         result = "Условие не выполнилось";
                     }
                 }
+            }
+            }
+            catch
+            {
+                result = "Неверный синтаксис";
             }
             return result;
         }
