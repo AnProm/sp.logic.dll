@@ -16,7 +16,7 @@ namespace Logic
         /// Исполняет переданную синтаксическую конструкцию и возвращает результат, иначе возвращает текст с ошибкой
         /// </summary>
         /// <param name="inputString">Синтаксическая конструкция</param>
-        /// <param name="mode">Выбор режима синтаксической кострукции 0-foreach 1-if</param>
+        /// <param name="mode">Выбор режима синтаксической кострукции 1-foreach 0-if</param>
         /// <returns></returns>
         public static string getResult(string inputString, byte mode)
         {
