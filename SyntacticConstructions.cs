@@ -20,11 +20,11 @@ namespace Logic
         /// <returns></returns>
         public static string getResult(string inputString, byte mode)
         {
-            string result = "Error!";
+            string result = "Неподдерживаемая конструкция!";
             string[] wordArray = inputString.Split(' ');
             if (wordArray.Length == 0)
             {
-                return "The entered string is empty!";
+                return "Введенная строка пуста.";
             }
 
             int index = 0;
