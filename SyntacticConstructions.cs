@@ -78,6 +78,7 @@ namespace Logic
         private static string Counter<T>(string[] words, int index)
         {
             string result = "Ошибка разбора конструкции FOREACH";
+            index++;//here is place for name of variable
             if (words[++index] != "in") { return result; }
             if (words[++index] != "{") { return result; }
 
@@ -100,7 +101,7 @@ namespace Logic
                 }
                 else { return result; }
             }
-            if (words[++index] != ")" || words[++index] != "{" || words[words.Length - 1] != "}") { return result; }
+            if (words[++index] != ")" || words[++index] != "{" || words[++index] != "}") { return result; }
 
             result = counter.ToString();
             return result;
@@ -316,7 +317,6 @@ namespace Logic
                     }
                 }
             }
-
             return result;
         }
         /// <summary>
