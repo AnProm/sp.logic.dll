@@ -11,13 +11,12 @@ namespace Logic
     /// </summary>
     public static class SyntacticConstructions
     {
-        //0-foreach
-        //1-if
+
         /// <summary>
         /// Исполняет переданную синтаксическую конструкцию и возвращает результат, иначе возвращает текст с ошибкой
         /// </summary>
         /// <param name="inputString">Синтаксическая конструкция</param>
-        /// <param name="mode">Выбор режима синтаксической кострукции</param>
+        /// <param name="mode">Выбор режима синтаксической кострукции 0-foreach 1-if</param>
         /// <returns></returns>
         public static string getResult(string inputString, byte mode)
         {
