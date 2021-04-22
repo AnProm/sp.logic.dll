@@ -8,9 +8,9 @@ using NHibernate.Cfg;
 
 namespace Logic
 {
-    public class ProductRepository
+    public class DataBaseRepository
     {
-        public void Add(Product product)
+        public void Add(DataBaseObject product)
         {
             using(ISession session = HybernateHelper.OpenSession())
             {
@@ -21,7 +21,7 @@ namespace Logic
                 }
             }
         }
-        public void Update(Product product)
+        public void Update(DataBaseObject product)
         {
 
             using (ISession session = HybernateHelper.OpenSession())
@@ -33,7 +33,7 @@ namespace Logic
                 }
             }
         }
-        public void Delete(Product product)
+        public void Delete(DataBaseObject product)
         {
 
             using (ISession session = HybernateHelper.OpenSession())
@@ -45,14 +45,14 @@ namespace Logic
                 }
             }
         }
-        public Product GetFirstByName(string name)
-        {
-            using (ISession session = HybernateHelper.OpenSession())
-            {
-                var queryResult = session.QueryOver<Product>().Where(x => x.Name == name).SingleOrDefault();
-                Console.ReadLine();
-                return queryResult ?? null;
-            }
-        }
+        //public DataBaseObject GetFirstByName(string name)
+        //{
+        //    using (ISession session = HybernateHelper.OpenSession())
+        //    {
+        //        var queryResult = session.QueryOver<DataBaseObject>().Where(x => x.Name == name).SingleOrDefault();
+        //        Console.ReadLine();
+        //        return queryResult ?? null;
+        //    }
+        //}
     }
 }

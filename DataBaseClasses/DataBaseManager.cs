@@ -18,7 +18,7 @@ namespace Logic
         {
             var cfg = new Configuration();
             cfg.Configure();
-            cfg.AddAssembly(typeof(Product).Assembly);
+            cfg.AddAssembly(typeof(DataBaseObject).Assembly);
 
             new SchemaExport(cfg).Execute(true, true, false);
         }

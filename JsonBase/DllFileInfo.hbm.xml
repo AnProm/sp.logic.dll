@@ -3,13 +3,12 @@
                      assembly="Logic"
                      namespace="Logic">
 
-    <class name="Product">
-      <id name="Id">
+    <class name="DllFileInfo">
+      <id name="SystemId">
         <generator class="guid" />
       </id>
-      <property name="Name" />
-      <property name="Category" />
-      <property name="Discontinued" />
+      <property name="FileName" />
+      <property name="FileVersion" />
+      <property name="DateOfLastEdit" />
     </class>
-
   </hibernate-mapping>

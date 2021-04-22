@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+  <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                     assembly="Logic"
+                     namespace="Logic">
+
+    <class name="AccessInfo">
+      <id name="SystemId">
+        <generator class="guid" />
+      </id>
+      <property name="Login" />
+      <property name="Hashcode" />
+      <property name="Password" />
+      <property name="Email" />
+    </class>
+
+  </hibernate-mapping>
