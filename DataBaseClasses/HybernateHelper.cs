@@ -13,6 +13,9 @@ namespace Logic
     {
         private static ISessionFactory _sessionFactory;
         
+        /// <summary>
+        /// Создают фабрику для сессий используя файл настройки библиотеки NHibernate
+        /// </summary>
         private static ISessionFactory SessionFactory
         {
             get
@@ -27,6 +30,10 @@ namespace Logic
                 return _sessionFactory;
             }
         }
+        /// <summary>
+        /// Открывает сессию, однопоточный объект на время работы программы, работающий как фабрика для объектов транзакций
+        /// </summary>
+        /// <returns></returns>
         public static ISession OpenSession()
         {
             return SessionFactory.OpenSession();

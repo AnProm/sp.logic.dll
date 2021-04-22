@@ -11,7 +11,9 @@ namespace Logic
 {
     public static class UnitTests
     {
-       
+       /// <summary>
+       /// Тест для проверки корректности файла настройки NHibernate
+       /// </summary>
             [TestFixture]
             public static class GenerateSchema_Fixture
             {
