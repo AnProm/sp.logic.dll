@@ -175,6 +175,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AsmModel.cs" />
     <Compile Include="BinaryBase\AccessInfo.cs" />
     <Compile Include="DataBaseClasses\DataBaseObject.cs" />
     <Compile Include="DataBaseClasses\DataBaseRepository.cs" />
@@ -182,8 +183,10 @@
     <Compile Include="DataBaseClasses\UnitTests.cs" />
     <Compile Include="JsonBase\DllFileInfo.cs" />
     <Compile Include="DataBaseClasses\DataBaseManager.cs" />
+    <Compile Include="Model\IAnalyseModel.cs" />
+    <Compile Include="Model\IAsmModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Analyser\SyntacticConstructions.cs" />
+    <Compile Include="Model\AnalyseModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -219,7 +222,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Analyser\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
