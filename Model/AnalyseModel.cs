@@ -28,42 +28,44 @@ namespace Logic.Model
 
             int index = 0;
             string currentWord;
-            switch (mode)
+            if (!mode)
             {
-                case false:
-                    if (wordArray[index++] == "foreach" && wordArray[index][0] == '(')
-                    {
-                        currentWord = wordArray[index].Trim('(');
-                        if (currentWord == "") { currentWord = wordArray[++index]; }
-                        if (String.Compare(currentWord, "byte") == 0) { return Counter<byte>(wordArray, index); }
-                        else if (currentWord == "sbyte" || currentWord == "SByte") { return Counter<sbyte>(wordArray, index); }
-                        else if (currentWord == "short" || currentWord == "Int16") { return Counter<short>(wordArray, index); }
-                        else if (currentWord == "ushort" || currentWord == "UInt16") { return Counter<ushort>(wordArray, index); }
-                        else if (currentWord == "int" || currentWord == "Int32") { return Counter<int>(wordArray, index); }
-                        else if (currentWord == "uint" || currentWord == "UInt32") { return Counter<uint>(wordArray, index); }
-                        else if (currentWord == "long" || currentWord == "Int64") { return Counter<long>(wordArray, index); }
-                        else if (currentWord == "ulong" || currentWord == "UInt64") { return Counter<ulong>(wordArray, index); }
-                        else if (currentWord == "float" || currentWord == "Single") { return Counter<float>(wordArray, index); }
-                        else if (currentWord == "double" || currentWord == "Double") { return Counter<double>(wordArray, index); }
-                        else if (currentWord == "decimal" || currentWord == "Decimal") { return Counter<decimal>(wordArray, index); }
-                        else if (currentWord == "char" || currentWord == "Char") { return Counter<char>(wordArray, index); }
-                        else if (currentWord == "string" || currentWord == "String") { return Counter<string>(wordArray, index); }
-                        else { result = "Неподдерживаемый тип данных"; }
-                    }
-                    return result;
-                case true:
-                    if (wordArray[index++] == "if" && wordArray[index][0] == '(')
-                    {
-                        currentWord = wordArray[index].Trim('(');
-                        if (currentWord == "") { currentWord = wordArray[++index]; }
-                        if (currentWord.TryParseGeneric<bool>()) { return Selector<bool>(wordArray, index); }
-                        else if (currentWord.TryParseGeneric<long>()) { return Selector<long>(wordArray, index); }
-                        else if (currentWord.TryParseGeneric<double>()) { return Selector<double>(wordArray, index); }
-                        else if (currentWord.TryParseGeneric<string>()) { return Selector<string>(wordArray, index); }
-                        else { result = "Неподдерживаемый тип данных"; }
-                    }
-                    return result;
+                if (wordArray[index++] == "foreach" && wordArray[index][0] == '(')
+                {
+                    currentWord = wordArray[index].Trim('(');
+                    if (currentWord == "") { currentWord = wordArray[++index]; }
+                    if (String.Compare(currentWord, "byte") == 0) { return Counter<byte>(wordArray, index); }
+                    else if (currentWord == "sbyte" || currentWord == "SByte") { return Counter<sbyte>(wordArray, index); }
+                    else if (currentWord == "short" || currentWord == "Int16") { return Counter<short>(wordArray, index); }
+                    else if (currentWord == "ushort" || currentWord == "UInt16") { return Counter<ushort>(wordArray, index); }
+                    else if (currentWord == "int" || currentWord == "Int32") { return Counter<int>(wordArray, index); }
+                    else if (currentWord == "uint" || currentWord == "UInt32") { return Counter<uint>(wordArray, index); }
+                    else if (currentWord == "long" || currentWord == "Int64") { return Counter<long>(wordArray, index); }
+                    else if (currentWord == "ulong" || currentWord == "UInt64") { return Counter<ulong>(wordArray, index); }
+                    else if (currentWord == "float" || currentWord == "Single") { return Counter<float>(wordArray, index); }
+                    else if (currentWord == "double" || currentWord == "Double") { return Counter<double>(wordArray, index); }
+                    else if (currentWord == "decimal" || currentWord == "Decimal") { return Counter<decimal>(wordArray, index); }
+                    else if (currentWord == "char" || currentWord == "Char") { return Counter<char>(wordArray, index); }
+                    else if (currentWord == "string" || currentWord == "String") { return Counter<string>(wordArray, index); }
+                    else { result = "Неподдерживаемый тип данных"; }
+                }
+                return result;
             }
+            else
+            {
+                if (wordArray[index++] == "if" && wordArray[index][0] == '(')
+                {
+                    currentWord = wordArray[index].Trim('(');
+                    if (currentWord == "") { currentWord = wordArray[++index]; }
+                    if (currentWord.TryParseGeneric<bool>()) { return Selector<bool>(wordArray, index); }
+                    else if (currentWord.TryParseGeneric<long>()) { return Selector<long>(wordArray, index); }
+                    else if (currentWord.TryParseGeneric<double>()) { return Selector<double>(wordArray, index); }
+                    else if (currentWord.TryParseGeneric<string>()) { return Selector<string>(wordArray, index); }
+                    else { result = "Неподдерживаемый тип данных"; }
+                }
+                return result;
+            }
+
         }
         /// <summary>
         /// Обрабатывает foreach конструкцию, возвращает количество итераций, либо ошибку
