@@ -3,6 +3,7 @@ DLL for work with data and syntactic constructions
 ГИТХАБ СИЛА
 АНДРЕЙ КОДЕРСКАЯ БАН МАШИНА
 #осторожно, снизу старые тесты
+            
             Console.WriteLine(SyntacticConstructions.getResult("(byte in {10, 33} ) { }", 0)); 
             Console.WriteLine(SyntacticConstructions.getResult("foreach (byte in { 10, 33} ) { }",0));
             Console.WriteLine(SyntacticConstructions.getResult("foreach ( byte in { 10, 33 } ) { }", 0));
