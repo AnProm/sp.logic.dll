@@ -185,6 +185,7 @@
     <Compile Include="DataBaseClasses\DataBaseManager.cs" />
     <Compile Include="Model\IAnalyseModel.cs" />
     <Compile Include="Model\IAsmModel.cs" />
+    <Compile Include="Model\IDataBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\AnalyseModel.cs" />
   </ItemGroup>

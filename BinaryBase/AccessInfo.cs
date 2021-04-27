@@ -15,6 +15,19 @@ namespace Logic
         public virtual string Hashcode { get; set; }
         public virtual string Password { get; set; }
         public virtual string Email { get; set; }
+
+        public AccessInfo() { }
+        /// <summary>
+        /// Конструктор для объекта информации по записи о доступе. 
+        /// </summary>
+        /// <param name="Login">Логин доступа</param>
+        /// <param name="Hashcode">Хешкод доступа</param>
+        /// <param name="Password">Пароль доступа</param>
+        /// <param name="Email">Email доступа</param>
+        public AccessInfo(string Login, string Hashcode, string Password, string Email)
+        {
+            this.Login = Login; this.Hashcode = Hashcode; this.Password = Password; this.Email = Email;
+        }
     }
 }
 

@@ -19,11 +19,11 @@ namespace Logic.Model
         /// <returns></returns>
         public string getResult(string inputString, bool mode)
         {
-            string result = "Неподдерживаемая конструкция!";
+            string result = "Ошибка! Неподдерживаемая конструкция!";
             string[] wordArray = inputString.Split(' ');
             if (wordArray.Length == 0)
             {
-                return "Введенная строка пуста.";
+                return "Ошибка! Введенная строка пуста.";
             }
 
             int index = 0;
@@ -47,7 +47,7 @@ namespace Logic.Model
                     else if (currentWord == "decimal" || currentWord == "Decimal") { return Counter<decimal>(wordArray, index); }
                     else if (currentWord == "char" || currentWord == "Char") { return Counter<char>(wordArray, index); }
                     else if (currentWord == "string" || currentWord == "String") { return Counter<string>(wordArray, index); }
-                    else { result = "Неподдерживаемый тип данных"; }
+                    else { result = "Ошибка! Неподдерживаемый тип данных"; }
                 }
                 return result;
             }
@@ -61,7 +61,7 @@ namespace Logic.Model
                     else if (currentWord.TryParseGeneric<long>()) { return Selector<long>(wordArray, index); }
                     else if (currentWord.TryParseGeneric<double>()) { return Selector<double>(wordArray, index); }
                     else if (currentWord.TryParseGeneric<string>()) { return Selector<string>(wordArray, index); }
-                    else { result = "Неподдерживаемый тип данных"; }
+                    else { result = "Ошбика! Неподдерживаемый тип данных"; }
                 }
                 return result;
             }
@@ -76,7 +76,7 @@ namespace Logic.Model
         /// <returns></returns>
         private string Counter<T>(string[] words, int index)
         {
-            string result = "Ошибка разбора конструкции FOREACH";
+            string result = "Ошибка! разбора конструкции FOREACH";
             try
             {
                 index++;//here is place for name of variable
@@ -104,11 +104,11 @@ namespace Logic.Model
                 }
                 if (words[++index] != ")" || words[++index] != "{" || words[++index] != "}") { return result; }
 
-                result = counter.ToString();
+                result = "Отработало: " + counter.ToString() + " раз";
             }
             catch
             {
-                result = "Ошибка разбора конструкции FOREACH";
+                result = "Ошибка! Не вышло разборать конструкцию FOREACH";
             }
             return result;
         }
@@ -121,7 +121,7 @@ namespace Logic.Model
         /// <returns></returns>
         public string Selector<T>(string[] words, int index)
         {
-            string result = "Ошибка разбора конструкции IF";
+            string result = "Ошибка! Не вышло разборать конструкцию IF";
             try
             {
                 T firstVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
@@ -132,16 +132,16 @@ namespace Logic.Model
                     if (words[index] == ")")
                     {
                         index++;
-                        if ((bool)(object)firstVariable == true) { result = "1"; }
-                        else { result = "2"; }
+                        if ((bool)(object)firstVariable == true) { result = "Вошло в ветку №" + "1"; }
+                        else { result = "Вошло в ветку №" + "2"; }
                     }
                     else if (words[index] == "==")
                     {
                         if (words[++index].TryParseGeneric<bool>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            if ((bool)(object)firstVariable == (bool)(object)secondVariable) { result = "1"; }
-                            else { result = "2"; }
+                            if ((bool)(object)firstVariable == (bool)(object)secondVariable) { result = "Вошло в ветку №" + "1"; }
+                            else { result = "Вошло в ветку №" + "2"; }
                         }
                     }
                     else if (words[index] == "!=")
@@ -149,11 +149,11 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<bool>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            if ((bool)(object)firstVariable != (bool)(object)secondVariable) { result = "1"; }
-                            else { result = "2"; }
+                            if ((bool)(object)firstVariable != (bool)(object)secondVariable) { result = "Вошло в ветку №" + "1"; }
+                            else { result = "Вошло в ветку №" + "2"; }
                         }
                     }
-                    else { result = "Неверный синтаксис"; }
+                    else { result = "Оишбка! Неверный синтаксис"; }
                 }
 
                 else if (firstVariable is long)
@@ -163,8 +163,8 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<long>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            if ((long)(object)firstVariable == (long)(object)secondVariable) { result = "1"; }
-                            else { result = "2"; }
+                            if ((long)(object)firstVariable == (long)(object)secondVariable) { result = "Вошло в ветку №" + "1"; }
+                            else { result = "Вошло в ветку №" + "2"; }
                         }
                     }
                     else if (words[index] == "!=")
@@ -172,7 +172,7 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<long>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (long)(object)firstVariable != (long)(object)secondVariable ? "1" : "2";
+                            result = (long)(object)firstVariable != (long)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
                     else if (words[index] == ">")
@@ -180,8 +180,8 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<long>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            if ((long)(object)firstVariable > (long)(object)secondVariable) { result = "1"; }
-                            else { result = "2"; }
+                            if ((long)(object)firstVariable > (long)(object)secondVariable) { result = "Вошло в ветку №" + "1"; }
+                            else { result = "Вошло в ветку №" + "2"; }
                         }
                     }
                     else if (words[index] == "<")
@@ -189,7 +189,7 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<long>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (long)(object)firstVariable < (long)(object)secondVariable ? "1" : "2";
+                            result = (long)(object)firstVariable < (long)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
                     else if (words[index] == "<=")
@@ -197,7 +197,7 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<long>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (long)(object)firstVariable <= (long)(object)secondVariable ? "1" : "2";
+                            result = (long)(object)firstVariable <= (long)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
                     else if (words[index] == ">=")
@@ -205,10 +205,10 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<long>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (long)(object)firstVariable >= (long)(object)secondVariable ? "1" : "2";
+                            result = (long)(object)firstVariable >= (long)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
-                    else { result = "Неверный синтаксис"; }
+                    else { result = "Ошбика! Неверный синтаксис"; }
                 }
 
                 else if (firstVariable is double)
@@ -218,8 +218,8 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<double>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            if ((double)(object)firstVariable == (double)(object)secondVariable) { result = "1"; }
-                            else { result = "2"; }
+                            if ((double)(object)firstVariable == (double)(object)secondVariable) { result = "Вошло в ветку №" + "1"; }
+                            else { result = "Вошло в ветку №" + "2"; }
                         }
                     }
                     else if (words[index] == "!=")
@@ -227,7 +227,7 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<double>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (double)(object)firstVariable != (double)(object)secondVariable ? "1" : "2";
+                            result = (double)(object)firstVariable != (double)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
                     else if (words[index] == ">")
@@ -235,8 +235,8 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<double>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            if ((double)(object)firstVariable > (double)(object)secondVariable) { result = "1"; }
-                            else { result = "2"; }
+                            if ((double)(object)firstVariable > (double)(object)secondVariable) { result = "Вошло в ветку №" + "1"; }
+                            else { result = "Вошло в ветку №" + "2"; }
                         }
                     }
                     else if (words[index] == "<")
@@ -244,7 +244,7 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<double>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (double)(object)firstVariable < (double)(object)secondVariable ? "1" : "2";
+                            result = (double)(object)firstVariable < (double)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
                     else if (words[index] == "<=")
@@ -252,7 +252,7 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<double>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (double)(object)firstVariable <= (double)(object)secondVariable ? "1" : "2";
+                            result = (double)(object)firstVariable <= (double)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
                     else if (words[index] == ">=")
@@ -260,7 +260,7 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<double>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (double)(object)firstVariable >= (double)(object)secondVariable ? "1" : "2";
+                            result = (double)(object)firstVariable >= (double)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
                     else { result = "Неверный синтаксис"; }
@@ -273,8 +273,8 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<string>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            if ((string)(object)firstVariable == (string)(object)secondVariable) { result = "1"; }
-                            else { result = "2"; }
+                            if ((string)(object)firstVariable == (string)(object)secondVariable) { result = "Вошло в ветку №" + "1"; }
+                            else { result = "Вошло в ветку №" + "2"; }
                         }
                     }
                     else if (words[index] == "!=")
@@ -282,25 +282,25 @@ namespace Logic.Model
                         if (words[++index].TryParseGeneric<string>())
                         {
                             secondVariable = (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(words[index++]);
-                            result = (string)(object)firstVariable != (string)(object)secondVariable ? "1" : "2";
+                            result = (string)(object)firstVariable != (string)(object)secondVariable ? "Вошло в ветку №" + "1" : "Вошло в ветку №" + "2";
                         }
                     }
-                    else { result = "Неверный синтаксис"; }
+                    else { result = "Ошбика! Неверный синтаксис"; }
                 }
-                if (words[index++] != ")" || words[index++] != "{") { result = "Неверный синтаксис"; };
+                if (words[index++] != ")" || words[index++] != "{") { result = "Ошбика! Неверный синтаксис"; };
                 //ниже - обработка else meow
                 if (words.Contains("else"))
                 {
                     int elseIndex = Array.IndexOf(words, "else");
                     if (elseIndex < index)
                     {
-                        result = "Неверный синтаксис";
+                        result = "Ошбика! Неверный синтаксис";
                     }
                     else
                     {
                         if (words[elseIndex - 1] != "}" || words[elseIndex + 1] != "{" || words[words.Length - 1] != "}")
                         {
-                            result = "Неверный синтаксис";
+                            result = "Ошбика! Неверный синтаксис";
                         }
                     }
                 }
@@ -308,20 +308,20 @@ namespace Logic.Model
                 {
                     if (words[words.Length - 1] != "}")
                     {
-                        result = "Неверный синтаксис";
+                        result = "Ошибка! Неверный синтаксис";
                     }
                     else
                     {
-                        if (result == "2")
-                        {
-                            result = "Условие не выполнилось";
-                        }
+                        ////if (result == "Вошло в ветку №" + "2")
+                        ////{
+                        ////    result = "Условие не выполнилось";
+                        ////}
                     }
                 }
             }
             catch
             {
-                result = "Неверный синтаксис";
+                result = "Ошбика! Неверный синтаксис";
             }
             return result;
         }

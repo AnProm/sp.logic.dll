@@ -45,14 +45,14 @@ namespace Logic
         /// Удаляет заданный объект в базе данных
         /// </summary>
         /// <param name="objectToAdd"> Объект наследуемый от DataBaseObject (Либо AccessInfo, либо DllFileInfo)</param>
-        public void Delete(DataBaseObject objectToAdd)
+        public void Delete(DataBaseObject objectToRemove)
         {
 
             using (ISession session = HybernateHelper.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                    session.Delete(objectToAdd);
+                    session.Delete(objectToRemove);
                     transaction.Commit();
                 }
             }
