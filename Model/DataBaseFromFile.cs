@@ -10,8 +10,9 @@ namespace Logic.Model
     class DataBaseFromFile : IDataBase
     {
         public string mode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string path { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public void Add(string path, DataBaseObject objectToAdd)
+        public void Add(DataBaseObject objectToAdd)
         {
             switch (mode)
             {
@@ -27,7 +28,7 @@ namespace Logic.Model
             throw new NotImplementedException();
         }
 
-        public void Delete(string path, DataBaseObject objectToDelete)
+        public void Delete(DataBaseObject objectToDelete)
         {
             switch (mode)
             {
@@ -43,7 +44,7 @@ namespace Logic.Model
             throw new NotImplementedException();
         }
 
-        public ICollection<DataBaseObject> Load(string path)
+        public ICollection<DataBaseObject> Load()
         {
             string[] files;
             ICollection<DataBaseObject> dataBaseObjects = new LinkedList<DataBaseObject>();
@@ -117,7 +118,7 @@ namespace Logic.Model
             }
         }
 
-        public void Update(string path, DataBaseObject objectToUpdate)
+        public void Update(DataBaseObject objectToUpdate)
         {
             
             switch (mode)

@@ -9,10 +9,11 @@ namespace Logic.Model
     interface IDataBase
     {
         string mode { get; set; }
-        void Delete(string path, DataBaseObject objectToDelete);
-        void Add(string path, DataBaseObject objectToAdd);
-        void Update(string path, DataBaseObject objectToUpdate);
-        ICollection<DataBaseObject> Load(string path);
+        string path { get; set; }
+        void Delete(DataBaseObject objectToDelete);
+        void Add(DataBaseObject objectToAdd);
+        void Update(DataBaseObject objectToUpdate);
+        ICollection<DataBaseObject> Load();
         void Save(string path);
     }
 }
