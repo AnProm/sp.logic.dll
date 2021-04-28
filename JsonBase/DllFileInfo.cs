@@ -15,10 +15,17 @@ namespace Logic
         public virtual string FileVersion { get; set; }
         public virtual DateTime DateOfLastEdit { get; set; }
         public DllFileInfo() { }
-
+        public Guid guid()
+        {
+            return this.SystemId;
+        }
         public DllFileInfo(string FileName, string FileVersion, DateTime DateOfLastEdit)
         {
-            this.FileName = FileName; this.FileVersion = FileVersion; this.DateOfLastEdit = DateOfLastEdit;
+            this.SystemId = Guid.NewGuid(); this.FileName = FileName; this.FileVersion = FileVersion; this.DateOfLastEdit = DateOfLastEdit;
+        }
+        public DllFileInfo(Guid guid, string FileName, string FileVersion, DateTime DateOfLastEdit)
+        {
+            this.SystemId = guid; this.FileName = FileName; this.FileVersion = FileVersion; this.DateOfLastEdit = DateOfLastEdit;
         }
     }
 }
