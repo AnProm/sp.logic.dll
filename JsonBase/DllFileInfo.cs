@@ -15,14 +15,14 @@ namespace Logic
         public virtual string FileVersion { get; set; }
         public virtual DateTime DateOfLastEdit { get; set; }
         public DllFileInfo() { }
-        public Guid guid()
-        {
-            return this.SystemId;
-        }
-        public DllFileInfo(string FileName, string FileVersion, DateTime DateOfLastEdit)
-        {
-            this.SystemId = Guid.NewGuid(); this.FileName = FileName; this.FileVersion = FileVersion; this.DateOfLastEdit = DateOfLastEdit;
-        }
+
+        /// <summary>
+        /// Конструктор для объекта информации по записи о файле. 
+        /// </summary>
+        /// <param name="guid">Уникальный для БД id</param>
+        /// <param name="FileName">Имя файла</param>
+        /// <param name="FileVersion">Версия файла</param>
+        /// <param name="DateOfLastEdit">Дата последнего редактирования</param>
         public DllFileInfo(Guid guid, string FileName, string FileVersion, DateTime DateOfLastEdit)
         {
             this.SystemId = guid; this.FileName = FileName; this.FileVersion = FileVersion; this.DateOfLastEdit = DateOfLastEdit;
