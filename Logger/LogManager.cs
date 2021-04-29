@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    class LogManager
+    public class LogManager
     {
         public enum type
         {
@@ -16,10 +16,8 @@ namespace Logic
 
         private String logInfo;
 
-        LogManager()
-        {
-            logInfo = "";
-        }
+        public LogManager() => this.logInfo = "";
+        
 
         public void log(type type, string eventInfo) 
         {
