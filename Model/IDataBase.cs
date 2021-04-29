@@ -15,6 +15,8 @@ namespace Logic.Model
         ICollection<DataBaseObject> Add(DataBaseObject objectToAdd);
         ICollection<DataBaseObject> Update(DataBaseObject objectToUpdate);
         ICollection<DataBaseObject> Load();
+
+        ICollection<DataBaseObject> GetAll();
         void Save(string pathToSave);
 
     }

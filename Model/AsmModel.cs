@@ -14,10 +14,10 @@ namespace Logic.Model
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
+        /// <param name="a">Число а для операции</param>
+        /// <param name="b">Число b для операции</param>
         /// <param name="mode">True = multiply, False = divide</param>
-        /// <returns>[0] - результат вычислений [1] - переполнение</returns>
+        /// <returns>[0] - результат вычислений, [1] - переполнение</returns>
         public string[] DoOperation(string a, string b, bool mode)
         {
             double aNum = 0;

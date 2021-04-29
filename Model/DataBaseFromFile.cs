@@ -47,7 +47,7 @@ namespace Logic.Model
                     binaryWriter.Close();
                     break;
             }
-            return LoadAll();
+            return GetAll();
         }
         
         /// <summary>
@@ -135,7 +135,7 @@ namespace Logic.Model
                     }
                     break;
             }
-            return LoadAll();
+            return GetAll();
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Logic.Model
         /// <returns>Коллекция записей</returns>
         public ICollection<DataBaseObject> Load()
         {
-            return LoadAll();
+            return GetAll();
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Logic.Model
         /// <param name="newPath">Путь, по которому будет сохранена БД</param>
         public void Save(string newPath)
         {
-            ICollection<DataBaseObject> dataBaseObjects = LoadAll();
+            ICollection<DataBaseObject> dataBaseObjects = GetAll();
             switch (mode)
             {
                 case ("json"):
@@ -272,14 +272,14 @@ namespace Logic.Model
                     }
                     break;
             }
-            return LoadAll();
+            return GetAll();
         }
 
         /// <summary>
         /// Реинициализиурет всё, что находится по пути, указанном в path
         /// </summary>
         /// <returns>Коллекцию записей из данной директории</returns>
-        private ICollection<DataBaseObject> LoadAll()
+        public ICollection<DataBaseObject> GetAll()
         {
             string[] files;
             ICollection<DataBaseObject> dataBaseObjects = new LinkedList<DataBaseObject>();

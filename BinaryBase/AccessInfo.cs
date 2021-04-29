@@ -16,6 +16,10 @@ namespace Logic
         public virtual string Password { get; set; }
         public virtual string Email { get; set; }
 
+        public override string ToString()
+        {
+            return "Класс AcssessInfo" + Login + " "  + Hashcode + " "  + Password + " " + Email;
+        }
         public AccessInfo() { }
 
 

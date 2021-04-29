@@ -6,24 +6,23 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    class LogManager
+    public class LogManager
     {
         public enum type
         {
             INFO,
-            WARN
+            WARN, 
+            ERROR
         }
 
         private String logInfo;
 
-        LogManager()
-        {
-            logInfo = "";
-        }
+        public LogManager() => this.logInfo = "";
+        
 
         public void log(type type, string eventInfo) 
         {
-            logInfo = logInfo + DateTime.Now.ToString() + "  [" + type.ToString() + "]  " + eventInfo + "\n";
+            logInfo += DateTime.Now.ToString() + "  [" + type.ToString() + "]  " + eventInfo + "\n";
         }
         public String getLog()
         {

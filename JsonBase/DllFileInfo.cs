@@ -14,6 +14,11 @@ namespace Logic
         public virtual string FileName { get; set; }
         public virtual string FileVersion { get; set; }
         public virtual DateTime DateOfLastEdit { get; set; }
+
+        public override string ToString()
+        {
+            return "Класс DllFileInfo " +  FileName + " " + FileVersion + " "  + DateOfLastEdit.ToString();
+        }
         public DllFileInfo() { }
 
         public DllFileInfo(string FileName, string FileVersion, DateTime DateOfLastEdit)

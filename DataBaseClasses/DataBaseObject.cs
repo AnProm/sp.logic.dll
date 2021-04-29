@@ -9,8 +9,9 @@ namespace Logic
     /// <summary>
     /// Базовый класс базы данных
     /// </summary>
-    public class DataBaseObject
+    public class DataBaseObject 
     {
         public virtual Guid SystemId { get; set; }
+
     }
 }

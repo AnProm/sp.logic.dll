@@ -29,7 +29,7 @@ namespace Logic.Model
                     transaction.Commit();
                 }
             }
-            return gettAllModels();
+            return GetAll();
         }
         /// <summary>
         /// Обновляет данные существующей записи в базе данных
@@ -46,7 +46,7 @@ namespace Logic.Model
                     transaction.Commit();
                 }
             }
-            return gettAllModels();
+            return GetAll();
         }
         /// <summary>
         /// Удаляет заданный объект в базе данных
@@ -65,14 +65,14 @@ namespace Logic.Model
 
                 }
             }
-            return gettAllModels();
+            return GetAll();
         }
         /// <summary>
         /// Позволяет получить объект по его уникальному  системному ключу
         /// </summary>
         /// <param name="systemId">Уникальный системный ключ записи</param>
         /// <returns> Объект наследуемый от DataBaseObject (Либо AccessInfo, либо DllFileInfo) с совпадающим Guid</returns>
-        private ICollection<DataBaseObject> gettAllModels()
+        public ICollection<DataBaseObject> GetAll()
         {
             ObservableCollection<DataBaseObject> result = new ObservableCollection<DataBaseObject>();
             using (ISession session = HybernateHelper.OpenSession(path))
@@ -86,7 +86,7 @@ namespace Logic.Model
 
         public ICollection<DataBaseObject> Load()
         {
-            return gettAllModels();
+            return GetAll();
         }
 
         public void Save(string pathToSave)
