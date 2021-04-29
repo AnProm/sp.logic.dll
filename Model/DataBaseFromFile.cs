@@ -11,7 +11,7 @@ namespace Logic.Model
     /// <summary>
     /// Класс, предоставляющий методы работы с фаловыми БД
     /// </summary>
-    class DataBaseFromFile : IDataBaseModel
+    public class DataBaseFromFile : IDataBaseModel
     {
         public string mode { get; set; }
         public string path { get; set; }
@@ -29,7 +29,9 @@ namespace Logic.Model
                     string newFileNameJson = path + "\\newRecordDB-" + objectToAdd.GetHashCode().ToString() + ".json";
                     BinaryWriter binaryWriterJson = new BinaryWriter(File.Create(newFileNameJson));
                     DllFileInfo writableObjJson = (DllFileInfo)objectToAdd;
-                    binaryWriterJson.Write(JsonConvert.SerializeObject(writableObjJson));
+                    LinkedList<DllFileInfo> listForWriting = new LinkedList<DllFileInfo>();
+                    listForWriting.AddLast(writableObjJson);
+                    binaryWriterJson.Write(JsonConvert.SerializeObject(listForWriting));
                     binaryWriterJson.Close();
                     break;
 
@@ -155,13 +157,13 @@ namespace Logic.Model
             switch (mode)
             {
                 case ("json"):
-                    string newFileNameJson = newPath + "\\programDB-" + dataBaseObjects.GetHashCode().ToString() + ".json";
+                    string newFileNameJson = newPath + "\\DBCopy-" + dataBaseObjects.GetHashCode().ToString() + ".json";
                     BinaryWriter binaryWriterJson = new BinaryWriter(File.Create(newFileNameJson));
                     binaryWriterJson.Write(JsonConvert.SerializeObject(dataBaseObjects));
                     binaryWriterJson.Close();
                     break;
                 case ("bin"):
-                    string newFileName = newPath + "\\programDB-" + dataBaseObjects.GetHashCode().ToString() + ".bin";
+                    string newFileName = newPath + "\\DBCopy-" + dataBaseObjects.GetHashCode().ToString() + ".bin";
                     BinaryWriter binaryWriter = new BinaryWriter(File.Create(newFileName));
                     for (int i = 0; i < dataBaseObjects.Count(); i++)
                     {
