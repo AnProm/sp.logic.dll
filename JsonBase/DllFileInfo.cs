@@ -16,6 +16,11 @@ namespace Logic
         public virtual DateTime DateOfLastEdit { get; set; }
         public DllFileInfo() { }
 
+        public DllFileInfo(string FileName, string FileVersion, DateTime DateOfLastEdit)
+        {
+            this.SystemId = Guid.NewGuid();  this.FileName = FileName; this.FileVersion = FileVersion; this.DateOfLastEdit = DateOfLastEdit;
+        }
+
         /// <summary>
         /// Конструктор для объекта информации по записи о файле. 
         /// </summary>

@@ -175,10 +175,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\DataBaseFromFile.cs" />
+    <Compile Include="LogManager.cs" />
     <Compile Include="Model\AsmModel.cs" />
     <Compile Include="BinaryBase\AccessInfo.cs" />
     <Compile Include="DataBaseClasses\DataBaseObject.cs" />
-    <Compile Include="DataBaseClasses\DataBaseRepository.cs" />
+    <Compile Include="Model\DataBaseFromDataBaseModel.cs" />
     <Compile Include="DataBaseClasses\HybernateHelper.cs" />
     <Compile Include="DataBaseClasses\UnitTests.cs" />
     <Compile Include="JsonBase\DllFileInfo.cs" />

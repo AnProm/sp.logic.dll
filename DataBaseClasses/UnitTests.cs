@@ -14,15 +14,15 @@ namespace Logic
        /// <summary>
        /// Тест для проверки корректности файла настройки NHibernate
        /// </summary>
-            [TestFixture]
-            public static class GenerateSchema_Fixture
-            {
-                [Test]
-                public static void Can_generate_schema()
-                {
-                DataBaseManager.LoadNhibernateCfg();
-                }
-            }
+            //[TestFixture]
+            //public static class GenerateSchema_Fixture
+            //{
+            //    [Test]
+            //    public static void Can_generate_schema()
+            //    {
+            //    DataBaseManager.LoadNhibernateCfg();
+            //    }
+            //}
                 
         }
 }

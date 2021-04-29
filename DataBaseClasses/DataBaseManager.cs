@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,13 @@ namespace Logic
     /// </summary>
     public class DataBaseManager
     {
-        public static void LoadNhibernateCfg()
+        public static void LoadNhibernateCfg(string filePath)
         {
+            string firstPart = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =";
+            string secondPart = ";Integrated Security=True";
+            string Result = firstPart + filePath + secondPart;
             var cfg = new Configuration();
+            cfg.SetProperty("connection.connection_string", Result);
             cfg.Configure();
             cfg.AddAssembly(typeof(DataBaseObject).Assembly);
 
@@ -25,4 +30,3 @@ namespace Logic
     }
 
 }
-
