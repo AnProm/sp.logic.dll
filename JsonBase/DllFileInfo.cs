@@ -11,6 +11,7 @@ namespace Logic
     /// </summary>
     public class DllFileInfo: DataBaseObject
     {
+
         public virtual string FileName { get; set; }
         public virtual string FileVersion { get; set; }
         public virtual DateTime DateOfLastEdit { get; set; }
@@ -18,6 +19,7 @@ namespace Logic
 
         public DllFileInfo(string FileName, string FileVersion, DateTime DateOfLastEdit)
         {
+            base.SystemId = Guid.NewGuid();
             this.FileName = FileName; this.FileVersion = FileVersion; this.DateOfLastEdit = DateOfLastEdit;
         }
     }

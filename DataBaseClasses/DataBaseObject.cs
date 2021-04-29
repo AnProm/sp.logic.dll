@@ -12,5 +12,10 @@ namespace Logic
     public class DataBaseObject
     {
         public virtual Guid SystemId { get; set; }
+    
+        public DataBaseObject()
+        {
+            SystemId = Guid.NewGuid();
+        }
     }
 }
