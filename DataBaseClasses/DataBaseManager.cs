@@ -15,6 +15,10 @@ namespace Logic
     /// </summary>
     public class DataBaseManager
     {
+        /// <summary>
+        /// Загрузка файла конфигурации
+        /// </summary>
+        /// <param name="filePath"></param>
         public static void LoadNhibernateCfg(string filePath)
         {
             string firstPart = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =";

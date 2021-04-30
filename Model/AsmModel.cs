@@ -12,7 +12,7 @@ namespace Logic.Model
         [DllImport("AsmFunc.dll")]
         public static extern double divide(double a, double b);
         /// <summary>
-        /// 
+        /// Метод вызывающий одну из импортируемых dll функций для ассемблерных вставок
         /// </summary>
         /// <param name="a">Число а для операции</param>
         /// <param name="b">Число b для операции</param>

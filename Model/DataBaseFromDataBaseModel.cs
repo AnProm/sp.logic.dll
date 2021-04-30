@@ -83,7 +83,10 @@ namespace Logic.Model
             }
             return result;
         }
-
+        /// <summary>
+        /// Загрузка объекта базы данных
+        /// </summary>
+        /// <returns>Коллекция объекта базы данных</returns>
         public ICollection<DataBaseObject> Load()
         {
             return GetAll();
